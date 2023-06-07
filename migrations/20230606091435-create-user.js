@@ -18,8 +18,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      role: {
-        type: Sequelize.STRING,
+      isSubscribed: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
