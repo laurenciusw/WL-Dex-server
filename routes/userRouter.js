@@ -1,5 +1,5 @@
 const Controller = require("../controllers");
-const { authentiaction } = require("../middlewares/auth");
+const { authentiaction, authorization } = require("../middlewares/auth");
 const userRouter = require("express").Router();
 
 userRouter.post("/register", Controller.register);
@@ -15,5 +15,12 @@ userRouter.get("/user", authentiaction, Controller.getProfile);
 userRouter.patch("/subscribe", authentiaction, Controller.updateStatus);
 
 userRouter.post("/generate-token", authentiaction, Controller.generateToken);
+
+userRouter.post(
+  "/addpokemon",
+  authentiaction,
+  authorization,
+  Controller.addPokemon
+);
 
 module.exports = userRouter;
