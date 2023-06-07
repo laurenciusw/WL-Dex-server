@@ -1,5 +1,5 @@
 const { comparePassword, encodeToken } = require("../helpers/helper");
-const { User } = require("../models/");
+const { User, PokeBox } = require("../models/");
 const axios = require("axios");
 const midtransClient = require("midtrans-client");
 class Controller {
@@ -145,6 +145,25 @@ class Controller {
       const midtrans_token = await snap.createTransaction(parameter);
 
       res.status(200).json(midtrans_token);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async addPokemon(req, res, next) {
+    try {
+      let userId = req.user.id;
+      let { pokeName, pokeImg } = req.body;
+
+      console.log(pokeName);
+      let addpoke = await PokeBox.create({
+        pokeName: pokeName,
+        pokeImg: pokeImg,
+        userId: userId,
+      });
+      // console.log(box.length)
+
+      res.status(201).json({ message: "Succes to Add poke" });
     } catch (error) {
       console.log(error);
     }

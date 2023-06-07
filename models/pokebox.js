@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   PokeBox.init(
     {
-      pokeId: DataTypes.INTEGER,
+      pokeName: DataTypes.INTEGER,
+      pokeImg: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
     {
