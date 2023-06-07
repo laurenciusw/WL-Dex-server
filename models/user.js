@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      role: DataTypes.STRING,
+      isSubscribed: DataTypes.BOOLEAN,
     },
     {
       sequelize,
@@ -59,6 +59,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.beforeCreate((user) => {
     user.password = hashPassword(user.password);
+    user.isSubscribed = false;
   });
   return User;
 };
