@@ -15,6 +15,7 @@ class Controller {
       const user = await User.create({
         email,
         password,
+        role: "normal",
       });
       res.status(201).json({
         message: `user with email ${email} succesfully created`,
@@ -58,6 +59,7 @@ class Controller {
     }
   }
 
+  //get pokemon
   static async getPoke(req, res, next) {
     try {
       const { name } = req.params;
@@ -65,6 +67,21 @@ class Controller {
       const pokemon = respons.data.pokemon_entries;
       res.status(200).json(pokemon);
     } catch (error) {
+      next(error);
+    }
+  }
+
+  //detail poke
+  static async getPokeDetail(req, res, next) {
+    try {
+      const { id } = req.params;
+      const detail = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${id}/`
+      );
+
+      res.status(200).json(detail.data);
+    } catch (error) {
+      console.log(error);
       next(error);
     }
   }
