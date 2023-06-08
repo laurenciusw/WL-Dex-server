@@ -23,4 +23,6 @@ userRouter.post(
   Controller.addPokemon
 );
 
+userRouter.get("/mypoke", authentiaction, Controller.getMyPoke);
+
 module.exports = userRouter;
