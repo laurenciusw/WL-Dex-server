@@ -150,6 +150,7 @@ class Controller {
     }
   }
 
+  //catch poke
   static async addPokemon(req, res, next) {
     try {
       let userId = req.user.id;
@@ -166,6 +167,16 @@ class Controller {
       res.status(201).json({ message: "Succes to Add poke" });
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  static async getMyPoke(req, res, next) {
+    try {
+      let userId = req.user.id;
+      let box = await PokeBox.findAll({ where: { userId } });
+      res.status(200).json(box);
+    } catch (error) {
+      next(error);
     }
   }
 }

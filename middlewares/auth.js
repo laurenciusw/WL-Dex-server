@@ -40,14 +40,6 @@ async function authorization(req, res, next) {
       }
     }
     next();
-    // if (!article) {
-    //   throw { name: "NotFound" };
-    // }
-    // if (role == "staff") {
-    //   if (userId !== article.authorId) {
-    //     throw { name: "Forbidden" };
-    //   }
-    // }
   } catch (error) {
     console.log(error);
     next(error);
