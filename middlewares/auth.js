@@ -1,5 +1,6 @@
+const { where } = require("sequelize");
 const { decodeToken } = require("../helpers/helper");
-const { User } = require("../models/");
+const { User, PokeBox } = require("../models/");
 
 //user authentication
 async function authentiaction(req, res, next) {
@@ -25,6 +26,27 @@ async function authentiaction(req, res, next) {
   }
 }
 
+async function authorization(req, res, next) {
+  try {
+    let userId = req.user.id;
+    let user = await User.findByPk(userId);
+    let isSubscribed = user.isSubscribed;
+
+    let box = await PokeBox.findAll({ where: { userId } });
+
+    if (isSubscribed == false) {
+      if (box.length >= 5) {
+        throw { name: "Forbidden" };
+      }
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
 module.exports = {
   authentiaction,
+  authorization,
 };

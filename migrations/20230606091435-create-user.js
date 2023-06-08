@@ -18,6 +18,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      isSubscribed: {
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

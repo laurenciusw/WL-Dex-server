@@ -1,3 +1,5 @@
+const userRouter = require("./userRouter");
+
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
@@ -5,5 +7,7 @@ router.get("/", (req, res) => {
     message: "Poke BM Server Side",
   });
 });
+
+router.use(userRouter);
 
 module.exports = router;

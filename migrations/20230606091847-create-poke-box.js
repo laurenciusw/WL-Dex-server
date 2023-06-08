@@ -9,8 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      pokeId: {
-        type: Sequelize.INTEGER,
+      pokeName: {
+        type: Sequelize.STRING,
+      },
+      pokeImg: {
+        type: Sequelize.STRING,
       },
       userId: {
         type: Sequelize.INTEGER,
